@@ -61,31 +61,13 @@ function App() {
     }
   }
 
-  /*function clickCard(card) {
-    clickedCards.forEach(clicked => {
-      if(clicked.name === card.name) {
-        alert("Game over!");
-        setGameRunning(false);
-        setCurrentScore(0);
-      }
-    });
-    if(gameRunning) {
-      let newArray = [...clickedCards];
-      newArray.push(card);
-      setClickedCards(newArray);
-      increaseScore();
-      shuffleCards();
-    }
-  }*/
-
   function clickCard(card) {
     // Check if the card was already clicked
     const alreadyClicked = clickedCards.some(clicked => clicked.name === card.name);
   
     if (alreadyClicked) {
       alert("Game over!");
-      setGameRunning(false);
-      setCurrentScore(0);
+      endGame();
       // Optionally reset clickedCards here if needed
       // setClickedCards([]);
       return; // Exit the function to prevent further execution
@@ -96,7 +78,18 @@ function App() {
       setClickedCards(prevCards => [...prevCards, card]); // Update clicked cards
       increaseScore(); // Increase score
       shuffleCards(); // Shuffle cards
+
+      if (currentScore + 1 === cards.length) {
+        alert("You win!");
+        endGame();
+      }
+
     }
+  }
+
+  function endGame() {
+    setGameRunning(false);
+    setCurrentScore(0);
   }
   
 
