@@ -6,7 +6,7 @@ function Banner() {
 
     return (
         <div>
-            <h1 className="banner">SUPERHERO SHOWDOWN SHUFFLE</h1>
+            <h1 className="banner">MULTIVERSE MEMORY MATCHUP</h1>
         </div>
     );
 }

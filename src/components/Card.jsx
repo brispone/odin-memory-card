@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Tilt from 'react-parallax-tilt';
 import '../styles/Card.css';
 
-function Card({ card, onClick }) {
+function Card({ card, onClick, isShuffling }) {
 
     function handleClick() {
         onClick(card);
@@ -17,10 +17,17 @@ function Card({ card, onClick }) {
                 glareMaxOpacity={0.3}
                 glarePosition='all'*/
                 scale={1.1}>
-                <div className="card-front" onClick={handleClick}>
-                    <img src={card.image.url} draggable="false" />
+            {isShuffling ? (
+                // Render the card back when isShuffling is true
+                    <div className="card-back">
+                    </div>
+                ) : (
+                // Render the card front when isShuffling is false
+                    <div className="card-front" onClick={handleClick}>
+                    <img src={card.image.url} alt={card.name} draggable="false" />
                     <h2 className="hero-name">{card.name}</h2>
                 </div>
+                )}
             </Tilt>
         </div>
     );

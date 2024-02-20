@@ -13,6 +13,7 @@ function App() {
   const [ isLoading, setIsLoading ] = useState(false);
   const [ cards, setCards ] = useState(null);
   const [ clickedCards, setClickedCards ] = useState([]);
+  const [ isShuffling, setIsShuffling ] = useState(false);
   const apiKey = import.meta.env.VITE_API_KEY;
 
   function generateRandomNumbers(count) {
@@ -26,6 +27,8 @@ function App() {
   }
 
   function shuffleCards() {
+    setIsShuffling(true);
+
     let array = [...cards];
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -33,6 +36,10 @@ function App() {
     }
 
     setCards(array);
+
+    setTimeout(() => {
+      setIsShuffling(false);
+    }, 1000);
   }
 
   const fetchCards = async() => {
@@ -111,7 +118,7 @@ function App() {
         ) : (
           <>
             {gameRunning && cards.map((card, index) => (
-              <Card key={index} card={card} onClick={clickCard}/>
+              <Card key={index} card={card} onClick={clickCard} isShuffling={isShuffling} />
             ))}
           </>
         )}
