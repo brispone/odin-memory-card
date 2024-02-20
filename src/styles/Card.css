@@ -13,6 +13,23 @@
     cursor: pointer;
 }
 
+@keyframes pulse {
+    0%, 100% {
+      box-shadow: 0 0 15px 5px rgba(255, 255, 0, 0.5);
+    }
+    50% {
+      box-shadow: 0 0 15px 5px rgba(255, 255, 0, 0.9);
+    }
+  }
+
+.card-front:hover {
+    animation: pulse 1.7s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+.card-front:active {
+    transform: scale(0.95);
+}
+
 .card-back {
     width: 250px;
     height: 325px;

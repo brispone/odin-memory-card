@@ -13,9 +13,6 @@ function Card({ card, onClick, isShuffling }) {
             <Tilt
                 tiltReverse
                 reset
-                /*glareEnable={true}
-                glareMaxOpacity={0.3}
-                glarePosition='all'*/
                 scale={1.1}>
             {isShuffling ? (
                 // Render the card back when isShuffling is true

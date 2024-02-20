@@ -20,4 +20,9 @@ body {
   font-family: Bangers;
   color: palegoldenrod;
   text-shadow: 2px 2px 4px black;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
