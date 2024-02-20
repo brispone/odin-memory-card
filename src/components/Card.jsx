@@ -15,7 +15,7 @@ function Card({ card }) {
                 glarePosition='all'*/
                 scale={1.1}>
                 <div className="card-front">
-                    <img src={card.image.url} />
+                    <img src={card.image.url} draggable="false" />
                     <h2 className="hero-name">{card.name}</h2>
                 </div>
             </Tilt>
