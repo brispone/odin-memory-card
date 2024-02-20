@@ -1,4 +1,4 @@
-div {
+.scoreboard {
+    color: palegoldenrod;
     text-align: right;
-    margin: 15px;
 }

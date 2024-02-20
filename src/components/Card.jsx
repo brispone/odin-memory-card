@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import '../styles/Card.css';
 
-function Card() {
+function Card({ card }) {
 
 
     return (
-        <div>
-
+        <div className="card-front">
+            <img src={card.image.url} />
+            <h2 className="hero-name">{card.name}</h2>
         </div>
     );
 }
