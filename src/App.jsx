@@ -9,8 +9,10 @@ function App() {
 
   const [ currentScore, setCurrentScore ] = useState(0);
   const [ bestScore, setBestScore ] = useState(0);
+  const [ gameRunning,setGameRunning ] = useState(false);
   const [ isLoading, setIsLoading ] = useState(false);
   const [ cards, setCards ] = useState(null);
+  const [ clickedCards, setClickedCards ] = useState([]);
   const apiKey = import.meta.env.VITE_API_KEY;
 
   function generateRandomNumbers(count) {
@@ -21,6 +23,16 @@ function App() {
     }
     
     return Array.from(numbers);
+  }
+
+  function shuffleCards() {
+    let array = [...cards];
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+
+    setCards(array);
   }
 
   const fetchCards = async() => {
@@ -36,6 +48,7 @@ function App() {
        console.error('Error fetching data:', error);
      } finally {
        setIsLoading(false);
+       setGameRunning(true);
     }
   };
 
@@ -48,6 +61,45 @@ function App() {
     }
   }
 
+  /*function clickCard(card) {
+    clickedCards.forEach(clicked => {
+      if(clicked.name === card.name) {
+        alert("Game over!");
+        setGameRunning(false);
+        setCurrentScore(0);
+      }
+    });
+    if(gameRunning) {
+      let newArray = [...clickedCards];
+      newArray.push(card);
+      setClickedCards(newArray);
+      increaseScore();
+      shuffleCards();
+    }
+  }*/
+
+  function clickCard(card) {
+    // Check if the card was already clicked
+    const alreadyClicked = clickedCards.some(clicked => clicked.name === card.name);
+  
+    if (alreadyClicked) {
+      alert("Game over!");
+      setGameRunning(false);
+      setCurrentScore(0);
+      // Optionally reset clickedCards here if needed
+      // setClickedCards([]);
+      return; // Exit the function to prevent further execution
+    }
+  
+    // Proceed if the game is still running and the card wasn't clicked before
+    if (gameRunning) {
+      setClickedCards(prevCards => [...prevCards, card]); // Update clicked cards
+      increaseScore(); // Increase score
+      shuffleCards(); // Shuffle cards
+    }
+  }
+  
+
   console.log(cards);
 
   return (
@@ -56,6 +108,7 @@ function App() {
         <div>
         <Banner />
         <button onClick={fetchCards}>New Cards</button>
+        <button onClick={shuffleCards}>Shuffle</button>
         </div>
         <Scoreboard currentScore={currentScore} bestScore={bestScore} />
       </div>
@@ -64,8 +117,8 @@ function App() {
           <Loading />
         ) : (
           <>
-            {cards && cards.map((card, index) => (
-              <Card key={index} card={card} />
+            {gameRunning && cards.map((card, index) => (
+              <Card key={index} card={card} onClick={clickCard}/>
             ))}
           </>
         )}

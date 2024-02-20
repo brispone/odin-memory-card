@@ -2,8 +2,11 @@ import { useState } from 'react';
 import Tilt from 'react-parallax-tilt';
 import '../styles/Card.css';
 
-function Card({ card }) {
+function Card({ card, onClick }) {
 
+    function handleClick() {
+        onClick(card);
+    }
 
     return (
         <div className="tilt-wrapper">
@@ -14,7 +17,7 @@ function Card({ card }) {
                 glareMaxOpacity={0.3}
                 glarePosition='all'*/
                 scale={1.1}>
-                <div className="card-front">
+                <div className="card-front" onClick={handleClick}>
                     <img src={card.image.url} draggable="false" />
                     <h2 className="hero-name">{card.name}</h2>
                 </div>
