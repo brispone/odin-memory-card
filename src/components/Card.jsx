@@ -10,7 +10,7 @@ function Card({ card, onClick, isShuffling }) {
             setFlipState('exit'); // Begin exiting (flipping out)
             setTimeout(() => {
                 setFlipState('enter'); // Begin entering (flipping in) after half duration
-            }, 600); // Assuming your animation is 0.6s, adjust this timing as needed
+            }, 600); // Assuming your animation is 0.6s, adjust this timing as needed - prev 600
         } else {
             setFlipState('front');
         }
