@@ -7,7 +7,6 @@
     position: relative;
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
-    margin-top: 175px;
   }
   .loader::after,
   .loader::before {

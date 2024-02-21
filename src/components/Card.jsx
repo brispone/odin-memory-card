@@ -21,27 +21,6 @@ function Card({ card, onClick, isShuffling }) {
             onClick(card);
         }   
     }
-/*
-        // Conditionally wrap the card front with Tilt or directly return the card back
-        const cardContent = isShuffling ? (
-            // Render the card back when isShuffling is true
-            <div className="card-back">
-            </div>
-        ) : (
-            // Wrap the card front with Tilt when isShuffling is false
-            <Tilt tiltReverse reset scale={1.1}>
-                <div className="card-front" onClick={handleClick}>
-                    <img src={card.image.url} alt={card.name} draggable="false" />
-                    <h2 className="hero-name">{card.name}</h2>
-                </div>
-            </Tilt>
-        );
-    
-        return (
-            <div className="tilt-wrapper">
-                {cardContent}
-            </div>
-        );*/
 
         const cardContent = flipState === 'front' || flipState === 'enter' ? (
             // Wrap the card front with Tilt when not shuffling or flipping in

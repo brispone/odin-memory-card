@@ -4,6 +4,7 @@ import Scoreboard from './components/Scoreboard';
 import Banner from './components/Banner';
 import Card from './components/Card';
 import Loading from './components/Loading';
+import Menu from './components/Menu';
 
 function App() {
 
@@ -42,9 +43,9 @@ function App() {
     }, 1000);
   }
 
-  const fetchCards = async() => {
+  const fetchCards = async(numOfCards) => {
     setIsLoading(true);
-    const randomIds = generateRandomNumbers(5); // generate 5 unique IDs for pulling heros - number will later depend on game difficulty
+    const randomIds = generateRandomNumbers(numOfCards); // generate a number (depending on game difficulty) of unique IDs for pulling characters
     try {
       const cardPromises = randomIds.map(id =>
         fetch(`/api/${apiKey}/${id}`).then(response => response.json())
@@ -94,6 +95,11 @@ function App() {
     }
   }
 
+  function startGame(numOfCards) {
+    setGameRunning(true);
+    fetchCards(numOfCards);
+  }
+
   function endGame() {
     setGameRunning(false);
     setCurrentScore(0);
@@ -107,21 +113,25 @@ function App() {
       <div className="top-bar">
         <div>
         <Banner />
-        <button onClick={fetchCards}>New Cards</button>
-        <button onClick={shuffleCards}>Shuffle</button>
+          <button onClick={fetchCards}>New Cards</button>
+          <button onClick={shuffleCards}>Shuffle</button>
         </div>
         <Scoreboard currentScore={currentScore} bestScore={bestScore} />
       </div>
-      <div className="gameboard">
+      <div className='gameboard-wrapper'>
+        <div className="gameboard">
         {isLoading ? (
           <Loading />
-        ) : (
+        ) : gameRunning ? (
           <>
-            {gameRunning && cards.map((card, index) => (
+            {cards.map((card, index) => (
               <Card key={index} card={card} onClick={clickCard} isShuffling={isShuffling} />
             ))}
           </>
+        ) : (
+          <Menu startGame={startGame} />
         )}
+        </div>
       </div>
     </>
   )
