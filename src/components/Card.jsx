@@ -1,33 +1,62 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Tilt from 'react-parallax-tilt';
 import '../styles/Card.css';
 
 function Card({ card, onClick, isShuffling }) {
+    const [flipState, setFlipState ] = useState('front');
+
+    useEffect(() => {
+        if (isShuffling) {
+            setFlipState('exit'); // Begin exiting (flipping out)
+            setTimeout(() => {
+                setFlipState('enter'); // Begin entering (flipping in) after half duration
+            }, 600); // Assuming your animation is 0.6s, adjust this timing as needed
+        } else {
+            setFlipState('front');
+        }
+    }, [isShuffling]);
 
     function handleClick() {
-        onClick(card);
+        if(!isShuffling) {
+            onClick(card);
+        }   
     }
-
-    return (
-        <div className="tilt-wrapper">
-            <Tilt
-                tiltReverse
-                reset
-                scale={1.1}>
-            {isShuffling ? (
-                // Render the card back when isShuffling is true
-                    <div className="card-back">
-                    </div>
-                ) : (
-                // Render the card front when isShuffling is false
-                    <div className="card-front" onClick={handleClick}>
+/*
+        // Conditionally wrap the card front with Tilt or directly return the card back
+        const cardContent = isShuffling ? (
+            // Render the card back when isShuffling is true
+            <div className="card-back">
+            </div>
+        ) : (
+            // Wrap the card front with Tilt when isShuffling is false
+            <Tilt tiltReverse reset scale={1.1}>
+                <div className="card-front" onClick={handleClick}>
                     <img src={card.image.url} alt={card.name} draggable="false" />
                     <h2 className="hero-name">{card.name}</h2>
                 </div>
-                )}
             </Tilt>
-        </div>
-    );
+        );
+    
+        return (
+            <div className="tilt-wrapper">
+                {cardContent}
+            </div>
+        );*/
+
+        const cardContent = flipState === 'front' || flipState === 'enter' ? (
+            // Wrap the card front with Tilt when not shuffling or flipping in
+            <Tilt tiltReverse reset scale={1.1} className={flipState === 'enter' ? 'flip-enter' : ''}>
+                <div className="card-front" onClick={handleClick}>
+                    <img src={card.image.url} alt={card.name} draggable="false" />
+                    <h2 className="hero-name">{card.name}</h2>
+                </div>
+            </Tilt>
+        ) : (
+            // Render the card back when flipping out
+            <div className="card-back flip-exit"></div>
+        );
+    
+        return <div className="tilt-wrapper">{cardContent}</div>;
 }
 
 export default Card
