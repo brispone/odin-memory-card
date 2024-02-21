@@ -6,6 +6,7 @@ import Banner from './components/Banner';
 import Card from './components/Card';
 import Loading from './components/Loading';
 import Menu from './components/Menu';
+import GameOverModal from './components/GameOverModal';
 import playAudio from './components/playAudio';
 
 function App() {
@@ -17,6 +18,8 @@ function App() {
   const [ cards, setCards ] = useState(null);
   const [ clickedCards, setClickedCards ] = useState([]);
   const [ isShuffling, setIsShuffling ] = useState(false);
+  const [ modalVisible, setModalVisible ] = useState(false);
+  const [ modalMessage, setModalMessage ] = useState('');
   const cardFlipAudio = new Audio(cardFlipSound);
   cardFlipAudio.volume = 0.4;
   const apiKey = import.meta.env.VITE_API_KEY;
@@ -79,10 +82,7 @@ function App() {
     const alreadyClicked = clickedCards.some(clicked => clicked.name === card.name);
   
     if (alreadyClicked) {
-      alert("Game over!");
-      endGame();
-      // Optionally reset clickedCards here if needed
-      // setClickedCards([]);
+      endGame(false);
       return; // Exit the function to prevent further execution
     }
   
@@ -90,13 +90,12 @@ function App() {
     if (gameRunning) {
       setClickedCards(prevCards => [...prevCards, card]); // Update clicked cards
       increaseScore(); // Increase score
-      shuffleCards(); // Shuffle cards
 
       if (currentScore + 1 === cards.length) {
-        alert("You win!");
-        endGame();
+        endGame(true);
+        return // Exit before cards are shuffled again
       }
-
+      shuffleCards(); // If game is still running, shuffle cards
     }
   }
 
@@ -105,9 +104,17 @@ function App() {
     fetchCards(numOfCards);
   }
 
-  function endGame() {
+  function endGame(playerWon) {
+    setModalVisible(true);
+    setModalMessage(playerWon ? "You win! Great job." : "Game over! Better luck next time.");
+  }
+
+  function resetGame() {
     setGameRunning(false);
     setCurrentScore(0);
+    setCards(null);
+    setClickedCards([]);
+    setModalVisible(false);
   }
   
 
@@ -136,6 +143,7 @@ function App() {
         )}
         </div>
       </div>
+      <GameOverModal isVisible={modalVisible} message={modalMessage} onReset={resetGame} />
     </>
   )
 }
