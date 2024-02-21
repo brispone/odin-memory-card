@@ -3,6 +3,11 @@
   src: url("../assets/Bangers-Regular.ttf");
 }
 
+@font-face {
+  font-family: Komika;
+  src: url("../assets/komika.hand.ttf");
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
