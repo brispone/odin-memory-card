@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import './styles/App.css'
+import cardFlipSound from './assets/flip.mp3';
 import Scoreboard from './components/Scoreboard';
 import Banner from './components/Banner';
 import Card from './components/Card';
 import Loading from './components/Loading';
 import Menu from './components/Menu';
+import playAudio from './components/playAudio';
 
 function App() {
 
@@ -15,6 +17,8 @@ function App() {
   const [ cards, setCards ] = useState(null);
   const [ clickedCards, setClickedCards ] = useState([]);
   const [ isShuffling, setIsShuffling ] = useState(false);
+  const cardFlipAudio = new Audio(cardFlipSound);
+  cardFlipAudio.volume = 0.4;
   const apiKey = import.meta.env.VITE_API_KEY;
 
   function generateRandomNumbers(count) {
@@ -29,7 +33,8 @@ function App() {
 
   function shuffleCards() {
     setIsShuffling(true);
-
+    playAudio(cardFlipAudio);
+ 
     let array = [...cards];
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -113,8 +118,6 @@ function App() {
       <div className="top-bar">
         <div>
         <Banner />
-          <button onClick={fetchCards}>New Cards</button>
-          <button onClick={shuffleCards}>Shuffle</button>
         </div>
         <Scoreboard currentScore={currentScore} bestScore={bestScore} />
       </div>
