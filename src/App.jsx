@@ -22,7 +22,7 @@ function App() {
   const [ isWinner, setIsWinner ] = useState(false);
   const cardFlipAudio = new Audio(cardFlipSound);
   cardFlipAudio.volume = 0.4;
-  const apiKey = import.meta.env.VITE_API_KEY;
+  const apiKey = process.env.API_KEY;
 
   function generateRandomNumbers(count) {
     const numbers = new Set();
