@@ -14,7 +14,7 @@ function GameOverModal({ isVisible, isWinner, onReset, backToMenu }) {
                 <p>{message}</p>
                 <div className='modal-btns'>
                     <button className='btn' onClick={backToMenu}>MENU</button>
-                    <button className='btn' onClick={onReset}>TRY AGAIN</button>
+                    <button className='btn' onClick={onReset}>PLAY AGAIN</button>
                 </div>
             </div>
         </div>
