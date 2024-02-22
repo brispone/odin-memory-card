@@ -38,8 +38,11 @@
     margin: 1.2%;
     display: flex;
     cursor: pointer;
-    background-color: #082b44;
     border: 1px solid palegoldenrod;
+    background-image: url('../assets/card-back.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .tilt-wrapper {
