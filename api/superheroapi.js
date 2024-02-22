@@ -15,10 +15,13 @@ const allowCors = fn => async (req, res) => {
 
 const handler = async (req, res) => {
   const { id } = req.query;
+  const apiKey = process.env.API_KEY;
+  const url = `https://superheroapi.com/api/${apiKey}/${id}`;
+
   try {
-    const apiUrl = `https://superheroapi.com/api/${process.env.API_KEY}/${id}`;
-    const response = await fetch(apiUrl);
-    const data = await response.json();
+    const response = await fetch(url);
+    const data = await response.text();
+    console.log('API Response:', data);
     res.status(200).json(data);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching superhero data' });
