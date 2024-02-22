@@ -56,7 +56,7 @@ function App() {
     const randomIds = generateRandomNumbers(numOfCards); // generate a number (depending on game difficulty) of unique IDs for pulling characters
     try {
       const cardPromises = randomIds.map(id =>
-        fetch(`https://cors-proxy-vert.vercel.app/proxy?url=https://superheroapi.com/api/${apiKey}/${id}`).then(response => response.json())
+        fetch(`https://superheroapi.com/api/${apiKey}/${id}`).then(response => response.json())
       );
        const cardResults = await Promise.all(cardPromises);
        setCards(cardResults);
