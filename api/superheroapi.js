@@ -14,9 +14,9 @@ const allowCors = fn => async (req, res) => {
 };
 
 const handler = async (req, res) => {
-  const { id } = req.query; // Assuming you're passing the character ID as a query parameter
+  const { id } = req.query;
   try {
-    const apiUrl = `https://superheroapi.com/api/${process.env.API_KEY}/${id}`; // Use environment variable for the API key
+    const apiUrl = `https://superheroapi.com/api/${process.env.API_KEY}/${id}`;
     const response = await fetch(apiUrl);
     const data = await response.json();
     res.status(200).json(data);

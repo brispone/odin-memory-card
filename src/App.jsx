@@ -22,7 +22,6 @@ function App() {
   const [ isWinner, setIsWinner ] = useState(false);
   const cardFlipAudio = new Audio(cardFlipSound);
   cardFlipAudio.volume = 0.4;
-  const apiKey = process.env.API_KEY;
 
   function generateRandomNumbers(count) {
     const numbers = new Set();
@@ -56,7 +55,7 @@ function App() {
     const randomIds = generateRandomNumbers(numOfCards); // generate a number (depending on game difficulty) of unique IDs for pulling characters
     try {
       const cardPromises = randomIds.map(id =>
-        fetch(`/api/superheroapi?id=${id}`).then(response => response.json())
+        fetch(`/api/superheroapi.js?id=${id}`).then(response => response.json())
       );
        const cardResults = await Promise.all(cardPromises);
        setCards(cardResults);
