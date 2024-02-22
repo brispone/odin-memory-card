@@ -7,7 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0);
     z-index: 3;
 }
 
@@ -33,4 +33,11 @@
     font-family: Komika;
     font-size: 22px;
     text-align: center;
+}
+
+.modal-btns {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import '../styles/GameOverModal.css';
 
-function GameOverModal({ isVisible, isWinner, onReset }) {
+function GameOverModal({ isVisible, isWinner, onReset, backToMenu }) {
     if(!isVisible) return null;
 
     const headline = isWinner ? "You win!" : "Game over!";
@@ -12,7 +12,10 @@ function GameOverModal({ isVisible, isWinner, onReset }) {
             <div className='modal-content'>
                 <h1>{headline}</h1>
                 <p>{message}</p>
-                <button className='btn' onClick={onReset}>OKAY</button>
+                <div className='modal-btns'>
+                    <button className='btn' onClick={backToMenu}>MENU</button>
+                    <button className='btn' onClick={onReset}>TRY AGAIN</button>
+                </div>
             </div>
         </div>
     )

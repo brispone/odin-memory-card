@@ -110,6 +110,14 @@ function App() {
   }
 
   function resetGame() {
+    setCurrentScore(0);
+    setClickedCards([]);
+    const currentDifficulty = cards.length;
+    fetchCards(currentDifficulty);
+    setModalVisible(false);
+  }
+
+  function backToMenu() {
     setGameRunning(false);
     setCurrentScore(0);
     setCards(null);
@@ -143,7 +151,7 @@ function App() {
         )}
         </div>
       </div>
-      <GameOverModal isVisible={modalVisible} isWinner={isWinner} onReset={resetGame} />
+      <GameOverModal isVisible={modalVisible} isWinner={isWinner} backToMenu={backToMenu} onReset={resetGame} />
     </>
   )
 }
