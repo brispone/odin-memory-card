@@ -20,7 +20,7 @@ const handler = async (req, res) => {
 
   try {
     const response = await fetch(url);
-    const data = await response.text();
+    const data = await response.json();
     console.log('API Response:', data);
     res.status(200).json(data);
   } catch (error) {
@@ -28,4 +28,4 @@ const handler = async (req, res) => {
   }
 };
 
-module.exports = allowCors(handler);
+export default allowCors(handler);
