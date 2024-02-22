@@ -19,7 +19,7 @@ function App() {
   const [ clickedCards, setClickedCards ] = useState([]);
   const [ isShuffling, setIsShuffling ] = useState(false);
   const [ modalVisible, setModalVisible ] = useState(false);
-  const [ modalMessage, setModalMessage ] = useState('');
+  const [ isWinner, setIsWinner ] = useState(false);
   const cardFlipAudio = new Audio(cardFlipSound);
   cardFlipAudio.volume = 0.4;
   const apiKey = import.meta.env.VITE_API_KEY;
@@ -106,7 +106,7 @@ function App() {
 
   function endGame(playerWon) {
     setModalVisible(true);
-    setModalMessage(playerWon ? "You win! Great job." : "Game over! Better luck next time.");
+    setIsWinner(playerWon ? true : false);
   }
 
   function resetGame() {
@@ -143,7 +143,7 @@ function App() {
         )}
         </div>
       </div>
-      <GameOverModal isVisible={modalVisible} message={modalMessage} onReset={resetGame} />
+      <GameOverModal isVisible={modalVisible} isWinner={isWinner} onReset={resetGame} />
     </>
   )
 }

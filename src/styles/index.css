@@ -31,3 +31,29 @@ body {
   -ms-user-select: none;
   user-select: none;
 }
+
+.btn {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  width: 25%;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  font-family: Bangers;
+  font-size: 2rem;
+  border: 1px solid palegoldenrod;
+  color: palegoldenrod;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 15px 5px rgba(255, 255, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 15px 5px rgba(255, 255, 0, 0.9);
+  }
+}
+
+.btn:hover {
+  animation: pulse 1.7s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
