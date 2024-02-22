@@ -1,8 +1,13 @@
-# React + Vite
+# Multiverse Memory Matchup
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a React-based web application developed as a part of The Odin Project curriculum. 
 
-Currently, two official plugins are available:
+## Technologies Used
+- React
+- CSS
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Demo
+Check out the live demo [here](https://odin-memory-card-lime.vercel.app/).
+
+## Credits
+This project is part of The Odin Project curriculum, a comprehensive guide to full-stack web development. Special thanks to SuperHero API (https://www.superheroapi.com/) for providing a diverse range of characters to feature in the game and to Vecteezy (https://www.vecteezy.com/) for the background image.
