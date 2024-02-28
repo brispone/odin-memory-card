@@ -10,7 +10,7 @@
   src: url("../assets/komika.hand.ttf");
 }
 
-* {
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
