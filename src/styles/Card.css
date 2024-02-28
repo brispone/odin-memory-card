@@ -13,6 +13,13 @@
     cursor: pointer;
 }
 
+@media screen and (max-width: 1000px) {
+  .card-front {
+    width: 150px;
+    height: 195px;
+  }
+}
+
 @keyframes pulse {
     0%, 100% {
       box-shadow: 0 0 15px 5px rgba(255, 255, 0, 0.5);
@@ -51,7 +58,7 @@
 
 .card-front img {
     flex: 0 1 auto;
-    max-height: 81%;
+    min-height: 81%;
     width: 100%;
     /*width: 100%;
     height: 100%; */
@@ -64,6 +71,13 @@
     margin: 0;
     padding: 10px;
     text-align: center;
+    max-height: 19%;
+}
+
+@media screen and (max-width: 1000px) {
+  .hero-name {
+    font-size: 18px;
+  }
 }
 
 .flip-enter {
