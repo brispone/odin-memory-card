@@ -13,13 +13,6 @@
     cursor: pointer;
 }
 
-@media screen and (max-width: 1000px) {
-  .card-front {
-    width: 150px;
-    height: 195px;
-  }
-}
-
 @keyframes pulse {
     0%, 100% {
       box-shadow: 0 0 15px 5px rgba(255, 255, 0, 0.5);
@@ -50,6 +43,13 @@
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 1000px) {
+  .card-front, .card-back {
+    width: 150px;
+    height: 195px;
+  }
 }
 
 .tilt-wrapper {
